@@ -14,6 +14,8 @@
 		DD4971832833979C00A9C18E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD4971812833979C00A9C18E /* LaunchScreen.storyboard */; };
 		DD49719528339A7A00A9C18E /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD49719328339A7A00A9C18E /* TagCollectionViewCell.swift */; };
 		DD49719628339A7A00A9C18E /* TagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD49719428339A7A00A9C18E /* TagCollectionViewCell.xib */; };
+		DD49719A2833D0A200A9C18E /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4971992833D0A200A9C18E /* PageViewController.swift */; };
+		DD49719C2833D2B300A9C18E /* CustomPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD49719B2833D2B300A9C18E /* CustomPageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		DD4971842833979C00A9C18E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD49719328339A7A00A9C18E /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionViewCell.swift; sourceTree = "<group>"; };
 		DD49719428339A7A00A9C18E /* TagCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagCollectionViewCell.xib; sourceTree = "<group>"; };
+		DD4971992833D0A200A9C18E /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		DD49719B2833D2B300A9C18E /* CustomPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +69,8 @@
 				DD49717F2833979C00A9C18E /* Assets.xcassets */,
 				DD4971812833979C00A9C18E /* LaunchScreen.storyboard */,
 				DD4971842833979C00A9C18E /* Info.plist */,
+				DD4971992833D0A200A9C18E /* PageViewController.swift */,
+				DD49719B2833D2B300A9C18E /* CustomPageViewController.swift */,
 			);
 			path = "Page control Demo";
 			sourceTree = "<group>";
@@ -152,7 +158,9 @@
 			files = (
 				DD49717B2833979A00A9C18E /* TagViewController.swift in Sources */,
 				DD4971772833979A00A9C18E /* AppDelegate.swift in Sources */,
+				DD49719C2833D2B300A9C18E /* CustomPageViewController.swift in Sources */,
 				DD49719528339A7A00A9C18E /* TagCollectionViewCell.swift in Sources */,
+				DD49719A2833D0A200A9C18E /* PageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,6 +12,13 @@ class TagCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var lblTagName: UILabel!
     
+    override var isSelected: Bool {
+        didSet {
+            layer.backgroundColor = isSelected ? UIColor.black.cgColor : UIColor.lightGray.cgColor
+            lblTagName.textColor = isSelected ? .white : .black
+        }
+    }
+    
     static let identifier = "TagCollectionViewCell"
     static let cellNibName = "TagCollectionViewCell"
     override func awakeFromNib() {

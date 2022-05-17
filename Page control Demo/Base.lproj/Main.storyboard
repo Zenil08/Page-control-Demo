@@ -31,13 +31,23 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ryf-og-5tt">
+                                <rect key="frame" x="0.0" y="114" width="414" height="782"/>
+                                <connections>
+                                    <segue destination="RPr-B6-YbH" kind="embed" id="C8t-Mr-Tvi"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ayk-Ha-qF7" secondAttribute="trailing" id="9Lg-N0-5ME"/>
                             <constraint firstItem="ayk-Ha-qF7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="ND0-Hq-6B5"/>
+                            <constraint firstItem="Ryf-og-5tt" firstAttribute="top" secondItem="ayk-Ha-qF7" secondAttribute="bottom" id="YBh-Kg-Oa8"/>
                             <constraint firstItem="ayk-Ha-qF7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="YoB-xe-JhJ"/>
+                            <constraint firstAttribute="bottom" secondItem="Ryf-og-5tt" secondAttribute="bottom" id="oj3-Os-0Rw"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ryf-og-5tt" secondAttribute="trailing" id="pvZ-ch-p5L"/>
+                            <constraint firstItem="Ryf-og-5tt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="toe-gg-VbI"/>
                         </constraints>
                     </view>
                     <connections>
@@ -46,7 +56,45 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="89"/>
+            <point key="canvasLocation" x="137.68115942028987" y="88.392857142857139"/>
+        </scene>
+        <!--Custom Page View Controller-->
+        <scene sceneID="cwi-qx-zQa">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="RPr-B6-YbH" customClass="CustomPageViewController" customModule="Page_control_Demo" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6pu-nF-V5M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1096" y="94"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="goJ-s8-I9c">
+            <objects>
+                <viewController storyboardIdentifier="PageViewController" id="Ujp-dA-ut5" customClass="PageViewController" customModule="Page_control_Demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="l3r-xe-mFA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vnf-Vl-12Q">
+                                <rect key="frame" x="171.5" y="430" width="71" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="smL-Si-CbU"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vnf-Vl-12Q" firstAttribute="centerX" secondItem="l3r-xe-mFA" secondAttribute="centerX" id="7Nv-EH-P6n"/>
+                            <constraint firstItem="vnf-Vl-12Q" firstAttribute="centerY" secondItem="l3r-xe-mFA" secondAttribute="centerY" id="hCR-ZT-iki"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="lblTitle" destination="vnf-Vl-12Q" id="UTW-s7-KB8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xzn-mF-OS1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1872" y="198"/>
         </scene>
     </scenes>
     <resources>
