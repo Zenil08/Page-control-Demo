@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" prefetchingEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ayk-Ha-qF7">
-                                <rect key="frame" x="10" y="64" width="404" height="50"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="50"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="RA1-vl-mGG"/>
@@ -42,7 +42,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ayk-Ha-qF7" secondAttribute="trailing" id="9Lg-N0-5ME"/>
-                            <constraint firstItem="ayk-Ha-qF7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="ND0-Hq-6B5"/>
+                            <constraint firstItem="ayk-Ha-qF7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ND0-Hq-6B5"/>
                             <constraint firstItem="Ryf-og-5tt" firstAttribute="top" secondItem="ayk-Ha-qF7" secondAttribute="bottom" id="YBh-Kg-Oa8"/>
                             <constraint firstItem="ayk-Ha-qF7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="YoB-xe-JhJ"/>
                             <constraint firstAttribute="bottom" secondItem="Ryf-og-5tt" secondAttribute="bottom" id="oj3-Os-0Rw"/>
@@ -61,7 +61,7 @@
         <!--Custom Page View Controller-->
         <scene sceneID="cwi-qx-zQa">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="RPr-B6-YbH" customClass="CustomPageViewController" customModule="Page_control_Demo" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="CustomPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="RPr-B6-YbH" customClass="CustomPageViewController" customModule="Page_control_Demo" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6pu-nF-V5M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1096" y="94"/>

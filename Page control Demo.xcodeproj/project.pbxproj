@@ -65,12 +65,12 @@
 				DD49719028339A2400A9C18E /* Cells */,
 				DD4971762833979A00A9C18E /* AppDelegate.swift */,
 				DD49717A2833979A00A9C18E /* TagViewController.swift */,
+				DD4971992833D0A200A9C18E /* PageViewController.swift */,
+				DD49719B2833D2B300A9C18E /* CustomPageViewController.swift */,
 				DD49717C2833979A00A9C18E /* Main.storyboard */,
 				DD49717F2833979C00A9C18E /* Assets.xcassets */,
 				DD4971812833979C00A9C18E /* LaunchScreen.storyboard */,
 				DD4971842833979C00A9C18E /* Info.plist */,
-				DD4971992833D0A200A9C18E /* PageViewController.swift */,
-				DD49719B2833D2B300A9C18E /* CustomPageViewController.swift */,
 			);
 			path = "Page control Demo";
 			sourceTree = "<group>";

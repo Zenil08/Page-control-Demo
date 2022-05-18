@@ -8,16 +8,16 @@
 import UIKit
 
 class PageViewController: UIViewController {
-
-    @IBOutlet weak var lblTitle: UILabel!
-    var index = 0
-    let colors = [
-        UIColor.red,
+    
+    @IBOutlet private weak var lblTitle: UILabel!
+    private var index = 0
+    private let colors = [
+        UIColor.brown,
         .green,
         .blue,
         .systemPink,
         .purple,
-        .brown
+        .systemRed
     ]
     
     static func getInstance(index: Int) -> PageViewController {
@@ -28,12 +28,11 @@ class PageViewController: UIViewController {
         } else {
             return PageViewController()
         }
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        lblTitle.text = "(Page \(index))"
+        lblTitle.text = "(Page \(index + 1))"
         view.backgroundColor = colors[index]
     }
 }

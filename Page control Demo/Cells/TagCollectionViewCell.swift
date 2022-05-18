@@ -8,23 +8,21 @@
 import UIKit
 
 class TagCollectionViewCell: UICollectionViewCell {
-
     
     @IBOutlet weak var lblTagName: UILabel!
-    
-    override var isSelected: Bool {
+    var isCellSelected: Bool = false {
         didSet {
-            layer.backgroundColor = isSelected ? UIColor.black.cgColor : UIColor.lightGray.cgColor
-            lblTagName.textColor = isSelected ? .white : .black
+            layer.backgroundColor = isCellSelected ? UIColor.black.cgColor : UIColor.lightGray.cgColor
+            lblTagName.textColor = isCellSelected ? .white : .black
         }
     }
     
     static let identifier = "TagCollectionViewCell"
     static let cellNibName = "TagCollectionViewCell"
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         layer.cornerRadius = lblTagName.frame.size.height / 2
         layer.masksToBounds = true
     }
-
 }
