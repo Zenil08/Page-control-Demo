@@ -16,11 +16,10 @@ class TagViewController: UIViewController {
         }
     }
     private var currentIndex = 0
-    private let tag = ["Following", "For You", "Popular", "Genre", "Trending", "Recently"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tagCollectionView.register(UINib(nibName: TagCollectionViewCell.cellNibName, bundle: nil), forCellWithReuseIdentifier: TagCollectionViewCell.identifier)
+        tagCollectionView.register(UINib(nibName: TagCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: TagCollectionViewCell.identifier)
         tagCollectionView.delegate = self
         tagCollectionView.dataSource = self
     }
@@ -36,27 +35,40 @@ class TagViewController: UIViewController {
 extension TagViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        tag.count
+        Tag.allCases.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagCollectionViewCell.identifier, for: indexPath) as? TagCollectionViewCell else { return UICollectionViewCell() }
         if indexPath.row == currentIndex {
-            cell.isCellSelected = true
-        } else {
-            cell.isCellSelected = false
+            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+            customPageViewController?.setSelectedIndex(to: currentIndex)
         }
-        cell.lblTagName.text = tag[indexPath.row]
+        cell.lblTagName.text = Tag.allCases[indexPath.row].rawValue
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let cell = collectionView.cellForItem(at: indexPath) as? TagCollectionViewCell {
-            cell.isCellSelected = true
-        }
-        customPageViewController?.selecteIndex = indexPath.row
+        guard let cell = collectionView.cellForItem(at: indexPath) as? TagCollectionViewCell else { return }
+        cell.isSelected = true
         currentIndex = indexPath.row
+        customPageViewController?.setSelectedIndex(to: currentIndex)
         collectionView.reloadData()
+    }
+}
+
+
+// MARK: - Tag Collection View Delegate FlowLayout
+extension TagViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let label = UILabel(frame: CGRect.zero)
+        label.text = Tag.allCases[indexPath.row].rawValue
+        label.sizeToFit()
+        let height = label.frame.height
+        let collWidth = (collectionView.bounds.width - 50) / 4.2
+        let collHeight = height + 8
+        return CGSize(width: collWidth, height: collHeight)
     }
 }
 

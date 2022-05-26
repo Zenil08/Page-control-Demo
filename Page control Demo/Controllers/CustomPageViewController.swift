@@ -17,9 +17,9 @@ class CustomPageViewController: UIPageViewController {
     
     private var individualPageViewControllerList = [UIViewController]()
     weak var customDelegate: CustomPageViewControllerDelegate?
-    var selecteIndex = 0 {
+    private var selecteIndex: Int? {
         didSet {
-            updatePage(selecteIndex: selecteIndex, oldIndex: oldValue)
+            updatePage(selecteIndex: selecteIndex ?? 0, oldIndex: oldValue ?? 0)
         }
     }
     
@@ -40,16 +40,20 @@ class CustomPageViewController: UIPageViewController {
             PageViewController.getInstance(index: 4),
             PageViewController.getInstance(index: 5),
         ]
-        setViewControllers([individualPageViewControllerList[selecteIndex]], direction: .forward, animated: true, completion: nil)
+        setViewControllers([individualPageViewControllerList[selecteIndex ?? 0]], direction: .forward, animated: true, completion: nil)
     }
     
-    // Update page when selected index chang
+    // Update page when selected index change
     fileprivate func updatePage(selecteIndex: Int, oldIndex: Int) {
         if selecteIndex > oldIndex {
             setViewControllers([individualPageViewControllerList[selecteIndex]], direction: .forward, animated: true, completion: nil)
         } else {
             setViewControllers([individualPageViewControllerList[selecteIndex]], direction: .reverse, animated: true, completion: nil)
         }
+    }
+    
+    func setSelectedIndex(to: Int) {
+        selecteIndex = to
     }
 }
 
@@ -81,7 +85,8 @@ extension CustomPageViewController: UIPageViewControllerDelegate {
     func pageViewController( _ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if let currentIndexPageViewController = pageViewController.viewControllers?.first
             as? PageViewController {
-            let index = individualPageViewControllerList.firstIndex(of: currentIndexPageViewController)!
+            guard let index = individualPageViewControllerList.firstIndex(of: currentIndexPageViewController) else { return }
+            selecteIndex = index
             customDelegate?.CustomPageViewController(CustomPageViewController: self, didUpdatePageIndex: index)
         }
     }

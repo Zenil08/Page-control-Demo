@@ -19,6 +19,12 @@ class PageViewController: UIViewController {
         .purple,
         .systemRed
     ]
+     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        lblTitle.text = "(Page \(index + 1))"
+        view.backgroundColor = colors[index]
+    }
     
     static func getInstance(index: Int) -> PageViewController {
         if #available(iOS 13.0, *) {
@@ -28,11 +34,5 @@ class PageViewController: UIViewController {
         } else {
             return PageViewController()
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        lblTitle.text = "(Page \(index + 1))"
-        view.backgroundColor = colors[index]
     }
 }
