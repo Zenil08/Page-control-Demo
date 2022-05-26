@@ -17,9 +17,9 @@ class CustomPageViewController: UIPageViewController {
     
     private var individualPageViewControllerList = [UIViewController]()
     weak var customDelegate: CustomPageViewControllerDelegate?
-    private var selecteIndex: Int? {
+    private var selecteIndex = 0 {
         didSet {
-            updatePage(selecteIndex: selecteIndex ?? 0, oldIndex: oldValue ?? 0)
+            updatePage(from: oldValue, to: selecteIndex)
         }
     }
     
@@ -28,23 +28,26 @@ class CustomPageViewController: UIPageViewController {
         setUpPageViewController()
     }
     
-    // Set up page view controller initial values
     fileprivate func setUpPageViewController() {
         dataSource = self
         delegate = self
-        individualPageViewControllerList = [
-            PageViewController.getInstance(index: 0),
-            PageViewController.getInstance(index: 1),
-            PageViewController.getInstance(index: 2),
-            PageViewController.getInstance(index: 3),
-            PageViewController.getInstance(index: 4),
-            PageViewController.getInstance(index: 5),
-        ]
-        setViewControllers([individualPageViewControllerList[selecteIndex ?? 0]], direction: .forward, animated: true, completion: nil)
+        individualPageViewControllerList = getViewControllers()
+        setViewControllers([individualPageViewControllerList[selecteIndex]], direction: .forward, animated: true, completion: nil)
+    }
+    
+    fileprivate func getViewControllers() -> [UIViewController]{
+        var viewControllers: [UIViewController] = []
+        for i in 0...5 {
+            let pageVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PageViewController") as! PageViewController
+            let vc = pageVC
+            vc.index = i
+            viewControllers.append(vc)
+        }
+        return viewControllers
     }
     
     // Update page when selected index change
-    fileprivate func updatePage(selecteIndex: Int, oldIndex: Int) {
+    fileprivate func updatePage(from oldIndex: Int ,to selecteIndex: Int) {
         if selecteIndex > oldIndex {
             setViewControllers([individualPageViewControllerList[selecteIndex]], direction: .forward, animated: true, completion: nil)
         } else {
@@ -85,9 +88,10 @@ extension CustomPageViewController: UIPageViewControllerDelegate {
     func pageViewController( _ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if let currentIndexPageViewController = pageViewController.viewControllers?.first
             as? PageViewController {
-            guard let index = individualPageViewControllerList.firstIndex(of: currentIndexPageViewController) else { return }
-            selecteIndex = index
-            customDelegate?.CustomPageViewController(CustomPageViewController: self, didUpdatePageIndex: index)
+           if let index = individualPageViewControllerList.firstIndex(of: currentIndexPageViewController) {
+               selecteIndex = index
+               customDelegate?.CustomPageViewController(CustomPageViewController: self, didUpdatePageIndex: index)
+           }
         }
     }
 }

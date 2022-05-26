@@ -10,6 +10,7 @@ import UIKit
 class TagViewController: UIViewController {
     
     @IBOutlet private weak var tagCollectionView: UICollectionView!
+    
     private var customPageViewController: CustomPageViewController? {
         didSet {
             customPageViewController?.customDelegate = self
@@ -56,7 +57,6 @@ extension TagViewController: UICollectionViewDataSource, UICollectionViewDelegat
         collectionView.reloadData()
     }
 }
-
 
 // MARK: - Tag Collection View Delegate FlowLayout
 extension TagViewController: UICollectionViewDelegateFlowLayout {

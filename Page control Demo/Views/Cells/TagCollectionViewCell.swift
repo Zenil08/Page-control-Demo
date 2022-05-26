@@ -16,7 +16,7 @@ class TagCollectionViewCell: UICollectionViewCell {
     
     override var isSelected: Bool {
         didSet {
-            tagBackgroundView.backgroundColor = isSelected ? UIColor.black : UIColor.lightGray
+            tagBackgroundView.backgroundColor = isSelected ? .black : .lightGray
             lblTagName.textColor = isSelected ? .white : .black
         }
     }
