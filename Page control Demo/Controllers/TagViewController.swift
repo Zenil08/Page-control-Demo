@@ -16,13 +16,14 @@ class TagViewController: UIViewController {
             customPageViewController?.customDelegate = self
         }
     }
-    private var currentIndex = 0
+    private var currentIndex: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tagCollectionView.register(UINib(nibName: TagCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: TagCollectionViewCell.identifier)
         tagCollectionView.delegate = self
         tagCollectionView.dataSource = self
+        tagCollectionView.delegate?.collectionView?(tagCollectionView, didSelectItemAt: IndexPath(row: 0, section: 0))
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -43,17 +44,15 @@ extension TagViewController: UICollectionViewDataSource, UICollectionViewDelegat
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagCollectionViewCell.identifier, for: indexPath) as? TagCollectionViewCell else { return UICollectionViewCell() }
         if indexPath.row == currentIndex {
             collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-            customPageViewController?.setSelectedIndex(to: currentIndex)
+            customPageViewController?.setSelectedIndex(to: indexPath.row)
         }
         cell.lblTagName.text = Tag.allCases[indexPath.row].rawValue
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? TagCollectionViewCell else { return }
-        cell.isSelected = true
         currentIndex = indexPath.row
-        customPageViewController?.setSelectedIndex(to: currentIndex)
+        customPageViewController?.setSelectedIndex(to: indexPath.row)
         collectionView.reloadData()
     }
 }

@@ -37,7 +37,7 @@ class CustomPageViewController: UIPageViewController {
     
     fileprivate func getViewControllers() -> [UIViewController]{
         var viewControllers: [UIViewController] = []
-        for i in 0...5 {
+        for i in 0...(Tag.allCases.count - 1) {
             let pageVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PageViewController") as! PageViewController
             let vc = pageVC
             vc.index = i
