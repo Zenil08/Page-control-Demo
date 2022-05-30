@@ -23,12 +23,12 @@ class TagViewController: UIViewController {
         tagCollectionView.register(UINib(nibName: TagCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: TagCollectionViewCell.identifier)
         tagCollectionView.delegate = self
         tagCollectionView.dataSource = self
-        tagCollectionView.delegate?.collectionView?(tagCollectionView, didSelectItemAt: IndexPath(row: 0, section: 0))
+        tagCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .centeredHorizontally)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? CustomPageViewController {
-            customPageViewController = vc
+        if let customPageVC = segue.destination as? CustomPageViewController {
+            customPageViewController = customPageVC
         }
     }
 }
