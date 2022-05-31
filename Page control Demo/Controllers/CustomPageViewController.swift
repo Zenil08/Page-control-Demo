@@ -17,9 +17,9 @@ class CustomPageViewController: UIPageViewController {
     
     private var individualPageViewControllerList = [UIViewController]()
     weak var customDelegate: CustomPageViewControllerDelegate?
-    private var selecteIndex = 0 {
+    private var selecteIndex: Int? {
         didSet {
-            updatePage(from: oldValue, to: selecteIndex)
+            updatePage(from: oldValue ?? 0, to: selecteIndex ?? 0)
         }
     }
     
@@ -32,7 +32,7 @@ class CustomPageViewController: UIPageViewController {
         dataSource = self
         delegate = self
         individualPageViewControllerList = getViewControllers()
-        setViewControllers([individualPageViewControllerList[selecteIndex]], direction: .forward, animated: true, completion: nil)
+        setViewControllers([individualPageViewControllerList[selecteIndex ?? 0]], direction: .forward, animated: true, completion: nil)
     }
     
     fileprivate func getViewControllers() -> [UIViewController]{
@@ -55,8 +55,8 @@ class CustomPageViewController: UIPageViewController {
         }
     }
     
-    func setSelectedIndex(to: Int) {
-        selecteIndex = to
+    func setSelectedIndex(to index: Int) {
+        selecteIndex = index
     }
 }
 
