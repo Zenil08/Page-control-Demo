@@ -34,7 +34,7 @@ class TagViewController: UIViewController {
 }
 
 // MARK: - tag collection view delegate and datasource
-extension TagViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension TagViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         Tag.allCases.count
@@ -53,12 +53,7 @@ extension TagViewController: UICollectionViewDataSource, UICollectionViewDelegat
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         currentIndex = indexPath.row
         customPageViewController?.setSelectedIndex(to: indexPath.row)
-        collectionView.reloadData()
     }
-}
-
-// MARK: - Tag Collection View Delegate FlowLayout
-extension TagViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let label = UILabel(frame: CGRect.zero)
