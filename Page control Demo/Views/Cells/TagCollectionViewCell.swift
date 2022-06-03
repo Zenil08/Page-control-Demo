@@ -9,15 +9,19 @@ import UIKit
 
 class TagCollectionViewCell: UICollectionViewCell {
     
-    static let identifier = "TagCollectionViewCell"
-    
-    @IBOutlet weak var lblTagName: UILabel!
+    @IBOutlet private weak var lblTagName: UILabel!
     @IBOutlet private weak var tagBackgroundView: UIView!
     
     override var isSelected: Bool {
         didSet {
             tagBackgroundView.backgroundColor = isSelected ? .black : .lightGray
             lblTagName.textColor = isSelected ? .white : .black
+        }
+    }
+    static let identifier = "TagCollectionViewCell"
+    var tagName: String? {
+        didSet {
+            lblTagName.text = tagName
         }
     }
 

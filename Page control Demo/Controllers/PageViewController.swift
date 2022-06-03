@@ -10,7 +10,8 @@ import UIKit
 class PageViewController: UIViewController {
     
     @IBOutlet private weak var lblTitle: UILabel!
-    var index = 0
+    
+    private var index = 0
     private let colors = [
         UIColor.brown,
         .green,
@@ -22,7 +23,11 @@ class PageViewController: UIViewController {
      
     override func viewDidLoad() {
         super.viewDidLoad()
-        lblTitle.text = "Page \(index + 1)"
+        lblTitle.text = Tag.allCases[index].rawValue
         view.backgroundColor = colors[index]
+    }
+    
+    func setIndex(to index: Int) {
+        self.index = index
     }
 }

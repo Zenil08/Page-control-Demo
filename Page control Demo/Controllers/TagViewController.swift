@@ -9,6 +9,7 @@ import UIKit
 
 class TagViewController: UIViewController {
     
+    // MARK: - IBOutlets
     @IBOutlet private weak var tagCollectionView: UICollectionView!
     
     private var customPageViewController: CustomPageViewController? {
@@ -20,10 +21,7 @@ class TagViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tagCollectionView.register(UINib(nibName: TagCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: TagCollectionViewCell.identifier)
-        tagCollectionView.delegate = self
-        tagCollectionView.dataSource = self
-        tagCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+        setUpTagCollectionView()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -31,11 +29,17 @@ class TagViewController: UIViewController {
             customPageViewController = customPageVC
         }
     }
+    
+    private func setUpTagCollectionView() {
+        tagCollectionView.register(UINib(nibName: TagCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: TagCollectionViewCell.identifier)
+        tagCollectionView.delegate = self
+        tagCollectionView.dataSource = self
+        tagCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+    }
 }
 
 // MARK: - tag collection view delegate and datasource
 extension TagViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         Tag.allCases.count
     }
@@ -46,22 +50,25 @@ extension TagViewController: UICollectionViewDataSource, UICollectionViewDelegat
             collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
             customPageViewController?.setSelectedIndex(to: indexPath.row)
         }
-        cell.lblTagName.text = Tag.allCases[indexPath.row].rawValue
+        cell.tagName = Tag.allCases[indexPath.row].rawValue
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         currentIndex = indexPath.row
+        customPageViewController?.setIsPageChanged(to: true)
         customPageViewController?.setSelectedIndex(to: indexPath.row)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        guard let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout else { return CGSize() }
+        let cellSpacing = flowLayout.minimumInteritemSpacing * 4
+        let sectionInset = flowLayout.sectionInset
         let label = UILabel(frame: CGRect.zero)
         label.text = Tag.allCases[indexPath.row].rawValue
         label.sizeToFit()
-        let height = label.frame.height
-        let collWidth = (collectionView.bounds.width - 50) / 4.2
-        let collHeight = height + 8
+        let collWidth = (collectionView.bounds.width - sectionInset.left - sectionInset.right - cellSpacing) / 4
+        let collHeight = label.frame.height + sectionInset.top + sectionInset.bottom
         return CGSize(width: collWidth, height: collHeight)
     }
 }
